@@ -1,0 +1,41 @@
+app = ""
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[deploy]
+  strategy = "bluegreen"
+
+[env]
+  PORT = "8080"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 50
+    soft_limit = 30 
+    type = "requests"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "30s"
+    interval = "15s"
+    path = "/ping"
+    restart_limit = 0
+    timeout = "2s"
