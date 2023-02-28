@@ -1,6 +1,5 @@
 import { Amm, Jupiter } from "@jup-ag/core";
 import { connection } from "./utils/connection";
-import * as zstd from "@bokuweb/zstd-wasm";
 import { chunkedGetRawMultipleAccountInfos } from "./utils/chunks";
 import { AccountInfo, PublicKey } from "@solana/web3.js";
 import { redis } from "./utils/redis";
@@ -15,7 +14,6 @@ async function main() {
   let lastUpdatedData = {
     value: process.uptime(),
   };
-  await zstd.init();
 
   async function loadJupiter() {
     const jupiter = await Jupiter.load({
@@ -39,8 +37,9 @@ async function main() {
         addressesToFetch.array
       );
 
-    const deserializedAccountInfosMap =
-      deserializeAccountInfosMap(accountInfosMap);
+    const deserializedAccountInfosMap = await deserializeAccountInfosMap(
+      accountInfosMap
+    );
 
     await redis.set(
       "allAccounts",
@@ -111,7 +110,7 @@ async function main() {
         );
         redis.set("contextSlot", contextSlot);
 
-        deserializeAccountInfosMap(updatedAccountInfosMap).forEach(
+        (await deserializeAccountInfosMap(updatedAccountInfosMap)).forEach(
           (value, key) => {
             let ammIds = accountToAmmIdsMap.get(key);
             value.owner = new PublicKey(value.owner);

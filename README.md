@@ -7,6 +7,9 @@
 1. `pnpm install`
 2. `RPC_URL=xxxxxxx pnpm start`
 
+## Tips
+- you can edit the number of instances to run in prod according to number of cores in scripts/pm2.config.js in production
+
 ## Deploy to fly.io with Dockerfile
 1. Register/Invite on fly.io
 2. Install flyctl cli

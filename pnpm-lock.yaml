@@ -4,12 +4,12 @@ overrides:
   '@pythnetwork/client': 2.7.3
 
 specifiers:
-  '@bokuweb/zstd-wasm': 0.0.17
   '@fastify/cors': 8.1.0
   '@fastify/rate-limit': 7.4.0
   '@fastify/sensible': ~5.1.1
   '@fastify/swagger': 7.6.1
-  '@jup-ag/core': 4.0.0-beta.9
+  '@jup-ag/core': 4.0.0-beta.13
+  '@mongodb-js/zstd': ^1.1.0
   '@project-serum/anchor': 0.24.2
   '@saberhq/solana-contrib': 1.13.6
   '@saberhq/token-utils': 1.13.6
@@ -41,12 +41,12 @@ specifiers:
   typescript: 4.9.4
 
 dependencies:
-  '@bokuweb/zstd-wasm': 0.0.17
   '@fastify/cors': 8.1.0
   '@fastify/rate-limit': 7.4.0
   '@fastify/sensible': 5.1.1
   '@fastify/swagger': 7.6.1
-  '@jup-ag/core': 4.0.0-beta.9_utg25zhhso4uzrnucrwicfbsou
+  '@jup-ag/core': 4.0.0-beta.13_utg25zhhso4uzrnucrwicfbsou
+  '@mongodb-js/zstd': 1.1.0
   '@saberhq/solana-contrib': 1.13.6_qh54t4oqtr6naoviur3spgs4ze
   '@saberhq/token-utils': 1.13.6_jtqdww3jiq7aw5mxkdgpcdrjxi
   '@solana/buffer-layout': 4.0.0
@@ -109,8 +109,15 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@bokuweb/zstd-wasm/0.0.17:
-    resolution: {integrity: sha512-Ov4HQePHwgeVMRh5ub9+Rk2+SuzvAgeq7epWxEtzQ8WnzVyh3bZQQsdz32rKpd3HU3M+iRPip2/naIyDPjPZUQ==}
+  /@coral-xyz/borsh/0.26.0_@solana+web3.js@1.72.0:
+    resolution: {integrity: sha512-uCZ0xus0CszQPHYfWAqKS5swS1UxvePu83oOF+TWpUkedsNlg6p2p4azxZNSSqwXb9uXMFgxhuMBX9r3Xoi0vQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@solana/web3.js': ^1.68.0
+    dependencies:
+      '@solana/web3.js': 1.72.0
+      bn.js: 5.2.1
+      buffer-layout: 1.2.2
     dev: false
 
   /@cremafinance/anchor-contrib/1.14.3_tn72k2ctlsdlyaywudiivcprti:
@@ -275,8 +282,8 @@ packages:
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
     dev: false
 
-  /@jup-ag/core/4.0.0-beta.9_utg25zhhso4uzrnucrwicfbsou:
-    resolution: {integrity: sha512-EgokCqM1ZR3EmTwPKevYzuIFO4nkNI9iu2RdDagSL7O1UHRnSi2syJzy7y+qOqqOVMHbAMsYuUyQLLdPETxKEA==}
+  /@jup-ag/core/4.0.0-beta.13_utg25zhhso4uzrnucrwicfbsou:
+    resolution: {integrity: sha512-4XSoaptXaWq5QsmqVSNNsMWsnlOs4cLo/05DDacMvrbStCC5Gg5aY5SztQKoDwkIm0vkHu++aXaKgMjk1zJlWA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@solana/buffer-layout': ^3 || ^4
@@ -292,12 +299,13 @@ packages:
       '@jup-ag/invariant': 0.9.35
       '@jup-ag/lifinity-sdk': 0.1.72
       '@jup-ag/lifinity-sdk-v2': 1.0.8
-      '@jup-ag/math': 4.0.0-beta.9
+      '@jup-ag/math': 4.0.0-beta.13
+      '@jup-ag/phoenix-sdk': 1.0.7_@solana+web3.js@1.72.0
       '@jup-ag/raydium-clmm-sdk': 1.0.5
       '@jup-ag/whirlpools-sdk': 0.7.2
-      '@mercurial-finance/dynamic-amm-sdk': 0.2.0_3fqlikm4ef5ndomto4un23d4wm
+      '@mercurial-finance/dynamic-amm-sdk': 0.2.3_3fqlikm4ef5ndomto4un23d4wm
       '@mercurial-finance/optimist': 0.2.0_5civ5c77pqoy3zogh3e5smquhq
-      '@mercurial-finance/vault-sdk': 0.3.10_ufwg5qdb5mk3a2dfaedlopse2q
+      '@mercurial-finance/vault-sdk': 0.3.12_ufwg5qdb5mk3a2dfaedlopse2q
       '@noble/hashes': 1.1.2
       '@project-serum/anchor': 0.24.2
       '@project-serum/serum': 0.13.65
@@ -383,7 +391,7 @@ packages:
       '@solana/spl-token': 0.1.8
       '@solana/web3.js': 1.72.0
       bigint-buffer: 1.1.5
-      bignumber.js: 9.1.0
+      bignumber.js: 9.1.1
       bn.js: 5.2.1
     transitivePeerDependencies:
       - bufferutil
@@ -482,12 +490,31 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@jup-ag/math/4.0.0-beta.9:
-    resolution: {integrity: sha512-k8DwKBtk6Cagk8peJPslXqOUGzwKljbjH+TiP0ZCcEFxMhyhxQqWVoy/bgYmOLeFvW20A1LYe1PUSYHZH3T9Uw==}
+  /@jup-ag/math/4.0.0-beta.13:
+    resolution: {integrity: sha512-1KCUP87vVjDDND2x2ijj5UDBepQxPrB226ZJy5Y/O1fRC7FGgcT6fM7JZiXAt3kJGpZJVpR2f8fvn4DktvZEsg==}
     engines: {node: '>=10'}
     dependencies:
       decimal.js: 10.4.2
       jsbi: 4.3.0
+    dev: false
+
+  /@jup-ag/phoenix-sdk/1.0.7_@solana+web3.js@1.72.0:
+    resolution: {integrity: sha512-k++jnqNQo9HDlsElTcJgVI9bg0cymAP2Zny5w6rpyjTyNJuct0hCDKVF07BdV5IPqoAvy2EntL+9UB8LEL0uXg==}
+    dependencies:
+      '@metaplex-foundation/beet': 0.7.1
+      '@metaplex-foundation/rustbin': 0.3.1
+      '@metaplex-foundation/solita': 0.12.2
+      '@solana/spl-token': 0.3.7_@solana+web3.js@1.72.0
+      '@types/node': 18.14.2
+      bn.js: 5.2.1
+      borsh: 0.7.0
+      bs58: 5.0.0
+    transitivePeerDependencies:
+      - '@solana/web3.js'
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
     dev: false
 
   /@jup-ag/raydium-clmm-sdk/1.0.5:
@@ -541,6 +568,18 @@ packages:
       - utf-8-validate
     dev: false
 
+  /@mercurial-finance/cypher-client/4.1.4:
+    resolution: {integrity: sha512-W5zy+weni9LPPCL6ImGMjb/Ykg8x09kRVSsVg+OaXZ7qrA+/lwEvv32aEn8kKuha0drvuvTNdXHPUuC60UEnsg==}
+    dependencies:
+      '@project-serum/anchor': 0.26.0
+      '@solana/web3.js': 1.72.0
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    dev: false
+
   /@mercurial-finance/drift-sdk/1.0.3:
     resolution: {integrity: sha512-I+K95ZK7FpSY67UcZ1JW0M2jOnEVoK5k3TMLzqbrv30m0IGBJYZ1zmrdPlIsNdd4N83KMsYbCjiGltL7h0/bYQ==}
     engines: {node: '>=12'}
@@ -561,12 +600,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@mercurial-finance/dynamic-amm-sdk/0.2.0_3fqlikm4ef5ndomto4un23d4wm:
-    resolution: {integrity: sha512-mEhPfDTfFlvCY7rZnjy9xAAHR/F2vwQfiARDQdfVm5XHOnz1vcWrWhm21jUBB3rrWB0nbCBvwaBDZuZ4khHVrw==}
+  /@mercurial-finance/dynamic-amm-sdk/0.2.3_3fqlikm4ef5ndomto4un23d4wm:
+    resolution: {integrity: sha512-uMFeGaZJOvZZi4LDq9PqETG+VYS3ntJkpvCVMuA2CHUDc98KRSrlVcuaT1HjMOqks9i2iZbrRXOcVeEu7ApFXw==}
     peerDependencies:
       '@solana/buffer-layout': ^3 || ^4
     dependencies:
-      '@mercurial-finance/vault-sdk': 0.3.10_yknb5eh732myw62gcw2clamxrm
+      '@mercurial-finance/vault-sdk': 0.3.12_yknb5eh732myw62gcw2clamxrm
       '@project-serum/anchor': 0.24.2
       '@saberhq/anchor-contrib': 1.14.11_tn72k2ctlsdlyaywudiivcprti
       '@saberhq/stableswap-sdk': 1.14.11_jtqdww3jiq7aw5mxkdgpcdrjxi
@@ -685,11 +724,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@mercurial-finance/vault-sdk/0.3.10_ufwg5qdb5mk3a2dfaedlopse2q:
-    resolution: {integrity: sha512-MVxkyRW1/nboTjZhKMzwM/NtPWqXMXNgxaOtKQ3iepKZxviwt+lSctZHBF0FgOVRHEbjcsfJxsotCc2D644HFQ==}
+  /@mercurial-finance/vault-sdk/0.3.12_ufwg5qdb5mk3a2dfaedlopse2q:
+    resolution: {integrity: sha512-PslaUTs1JgMroGnyuykjK8W35tER4tmne1CMsBkyuo3p4gd6XIznhWgCZtbaodJHmmfgude5f+CEc0XtroNK/Q==}
     dependencies:
       '@blockworks-foundation/mango-client': 3.6.20
       '@mercurial-finance/apricot-sdk': 0.17.6
+      '@mercurial-finance/cypher-client': 4.1.4
       '@mercurial-finance/drift-sdk': 1.0.3
       '@mercurial-finance/frakt-sdk': 0.0.2
       '@mercurial-finance/francium-sdk': 1.4.3
@@ -718,11 +758,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@mercurial-finance/vault-sdk/0.3.10_yknb5eh732myw62gcw2clamxrm:
-    resolution: {integrity: sha512-MVxkyRW1/nboTjZhKMzwM/NtPWqXMXNgxaOtKQ3iepKZxviwt+lSctZHBF0FgOVRHEbjcsfJxsotCc2D644HFQ==}
+  /@mercurial-finance/vault-sdk/0.3.12_yknb5eh732myw62gcw2clamxrm:
+    resolution: {integrity: sha512-PslaUTs1JgMroGnyuykjK8W35tER4tmne1CMsBkyuo3p4gd6XIznhWgCZtbaodJHmmfgude5f+CEc0XtroNK/Q==}
     dependencies:
       '@blockworks-foundation/mango-client': 3.6.20
       '@mercurial-finance/apricot-sdk': 0.17.6
+      '@mercurial-finance/cypher-client': 4.1.4
       '@mercurial-finance/drift-sdk': 1.0.3
       '@mercurial-finance/frakt-sdk': 0.0.2
       '@mercurial-finance/francium-sdk': 1.4.3
@@ -749,6 +790,148 @@ packages:
       - encoding
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /@metaplex-foundation/beet-solana/0.3.1:
+    resolution: {integrity: sha512-tgyEl6dvtLln8XX81JyBvWjIiEcjTkUwZbrM5dIobTmoqMuGewSyk9CClno8qsMsFdB5T3jC91Rjeqmu/6xk2g==}
+    dependencies:
+      '@metaplex-foundation/beet': 0.7.1
+      '@solana/web3.js': 1.72.0
+      bs58: 5.0.0
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@metaplex-foundation/beet/0.4.0:
+    resolution: {integrity: sha512-2OAKJnLatCc3mBXNL0QmWVQKAWK2C7XDfepgL0p/9+8oSx4bmRAFHFqptl1A/C0U5O3dxGwKfmKluW161OVGcA==}
+    dependencies:
+      ansicolors: 0.3.2
+      bn.js: 5.2.1
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@metaplex-foundation/beet/0.7.1:
+    resolution: {integrity: sha512-hNCEnS2WyCiYyko82rwuISsBY3KYpe828ubsd2ckeqZr7tl0WVLivGkoyA/qdiaaHEBGdGl71OpfWa2rqL3DiA==}
+    dependencies:
+      ansicolors: 0.3.2
+      bn.js: 5.2.1
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@metaplex-foundation/rustbin/0.3.1:
+    resolution: {integrity: sha512-hWd2JPrnt2/nJzkBpZD3Y6ZfCUlJujv2K7qUfsxdS0jSwLrSrOvYwmNWFw6mc3lbULj6VP4WDyuy9W5/CHU/lQ==}
+    dependencies:
+      debug: 4.3.4
+      semver: 7.3.8
+      text-table: 0.2.0
+      toml: 3.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@metaplex-foundation/solita/0.12.2:
+    resolution: {integrity: sha512-oczMfE43NNHWweSqhXPTkQBUbap/aAiwjDQw8zLKNnd/J8sXr/0+rKcN5yJIEgcHeKRkp90eTqkmt2WepQc8yw==}
+    hasBin: true
+    dependencies:
+      '@metaplex-foundation/beet': 0.4.0
+      '@metaplex-foundation/beet-solana': 0.3.1
+      '@metaplex-foundation/rustbin': 0.3.1
+      '@solana/web3.js': 1.72.0
+      camelcase: 6.3.0
+      debug: 4.3.4
+      js-sha256: 0.9.0
+      prettier: 2.8.4
+      snake-case: 3.0.4
+      spok: 1.4.3
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@mongodb-js/zstd-darwin-arm64/1.1.0:
+    resolution: {integrity: sha512-3XUa82KqWvtFEsx8WYwgdVCjC5Xnz77Hg54O3q7sw8LVPM/faFnGKGH2NSmNnucbabtEpLECz4iahK0bUotl4Q==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-darwin-x64/1.1.0:
+    resolution: {integrity: sha512-5veErRDyMHJbq/3cRSMrg6WkByXHhmhqZAK7Y4gn8owHcSIuC4ztOT+cH7AQWI7M47JkpcJX640cOMYYtWJbfg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-linux-arm64-gnu/1.1.0:
+    resolution: {integrity: sha512-M5FRUlDUV3PvpAM/VmPLVczDJOZOaT7qxl1i6fXNGZ0DDmnSDigZBUmc+w3tQGKi0/VRZiwdyBZcQQgqBeKr7g==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-linux-arm64-musl/1.1.0:
+    resolution: {integrity: sha512-3EdhHJKOd/8eXg4Q/ID+HGKUifIY0dqULPGpFveM7iBpV0QrpVOU7iDjVoFEROTqUubHN246Lmvj7VZ3z4F9+A==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-linux-x64-gnu/1.1.0:
+    resolution: {integrity: sha512-kNLvetxCFYx7QPEo/kR8h3ZApvjXtUYWuct9Mz52Rw67K3Cq5fJDjTAhroMsJCK2doNgjI1dxAQIhZziwnaMCg==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-linux-x64-musl/1.1.0:
+    resolution: {integrity: sha512-lJxI/4kVPQUXWRxi4DOpBziO1y8EFuBGp7QLWzPgVhxY8boGYQhybZqj2L+KmLG3gsrh4dstQWhaIojDRM7UiQ==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd-win32-x64-msvc/1.1.0:
+    resolution: {integrity: sha512-nct2+7xL5FYeteH+nLCskYerHE7yaneqGJuR2/2n4GsUPMyIbyKwa0VOEAKP1QF/OrwLMswtdRUPtyI8q2PF9Q==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@mongodb-js/zstd/1.1.0:
+    resolution: {integrity: sha512-+dRj3tSgenHhdqZ1d9ii7PKrXerXOZgDKJE9E2IFxC2lOecgOnSnInAD1o6hCFmyJ5NDQrcsrJKxkOlptwA1mw==}
+    engines: {node: '>= 10'}
+    optionalDependencies:
+      '@mongodb-js/zstd-darwin-arm64': 1.1.0
+      '@mongodb-js/zstd-darwin-x64': 1.1.0
+      '@mongodb-js/zstd-linux-arm64-gnu': 1.1.0
+      '@mongodb-js/zstd-linux-arm64-musl': 1.1.0
+      '@mongodb-js/zstd-linux-x64-gnu': 1.1.0
+      '@mongodb-js/zstd-linux-x64-musl': 1.1.0
+      '@mongodb-js/zstd-win32-x64-msvc': 1.1.0
     dev: false
 
   /@noble/ed25519/1.7.3:
@@ -966,6 +1149,32 @@ packages:
       bs58: 4.0.1
       buffer-layout: 1.2.2
       camelcase: 5.3.1
+      cross-fetch: 3.1.5
+      crypto-hash: 1.3.0
+      eventemitter3: 4.0.7
+      js-sha256: 0.9.0
+      pako: 2.1.0
+      snake-case: 3.0.4
+      superstruct: 0.15.5
+      toml: 3.0.0
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@project-serum/anchor/0.26.0:
+    resolution: {integrity: sha512-Nq+COIjE1135T7qfnOHEn7E0q39bQTgXLFk837/rgFe6Hkew9WML7eHsS+lSYD2p3OJaTiUOHTAq1lHy36oIqQ==}
+    engines: {node: '>=11'}
+    dependencies:
+      '@coral-xyz/borsh': 0.26.0_@solana+web3.js@1.72.0
+      '@solana/web3.js': 1.72.0
+      base64-js: 1.5.1
+      bn.js: 5.2.1
+      bs58: 4.0.1
+      buffer-layout: 1.2.2
+      camelcase: 6.3.0
       cross-fetch: 3.1.5
       crypto-hash: 1.3.0
       eventemitter3: 4.0.7
@@ -1220,8 +1429,8 @@ packages:
       bn.js: '>=5'
       jsbi: ^3 || ^4
     dependencies:
-      '@saberhq/solana-contrib': 1.13.6_qh54t4oqtr6naoviur3spgs4ze
-      '@saberhq/token-utils': 1.13.6_jtqdww3jiq7aw5mxkdgpcdrjxi
+      '@saberhq/solana-contrib': 1.14.11_qh54t4oqtr6naoviur3spgs4ze
+      '@saberhq/token-utils': 1.14.11_jtqdww3jiq7aw5mxkdgpcdrjxi
       '@solana/buffer-layout': 4.0.0
       '@solana/web3.js': 1.72.0
       bn.js: 5.2.1
@@ -1473,7 +1682,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.13
       '@noble/ed25519': 1.7.3
-      '@noble/hashes': 1.1.2
+      '@noble/hashes': 1.2.0
       '@noble/secp256k1': 1.7.1
       '@solana/buffer-layout': 4.0.0
       bigint-buffer: 1.1.5
@@ -1577,7 +1786,7 @@ packages:
   /@types/bn.js/4.11.6:
     resolution: {integrity: sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==}
     dependencies:
-      '@types/node': 16.18.12
+      '@types/node': 18.14.2
     dev: false
 
   /@types/bn.js/5.1.1:
@@ -1630,6 +1839,10 @@ packages:
 
   /@types/node/16.18.12:
     resolution: {integrity: sha512-vzLe5NaNMjIE3mcddFVGlAXN1LEWueUsMsOJWaT6wWMJGyljHAWHznqfnKUQWGzu7TLPrGvWdNAsvQYW+C0xtw==}
+
+  /@types/node/18.14.2:
+    resolution: {integrity: sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==}
+    dev: false
 
   /@types/object-hash/1.3.4:
     resolution: {integrity: sha512-xFdpkAkikBgqBdG9vIlsqffDV8GpvnPEzs0IUtr1v3BEB97ijsFQ4RXVbUZwjFThhB4MDSTUfvmxUD5PGx0wXA==}
@@ -1725,6 +1938,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       color-convert: 2.0.1
+    dev: false
+
+  /ansicolors/0.3.2:
+    resolution: {integrity: sha512-QXu7BPrP29VllRxH8GwB7x5iX5qWKAAMLqKQGWTeLWVlNHNOpVMJ91dsxQAIWXpjuW5wqvxu3Jd/nRjrJ+0pqg==}
     dev: false
 
   /archy/1.0.0:
@@ -1940,6 +2157,11 @@ packages:
   /camelcase/5.3.1:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
     engines: {node: '>=6'}
+
+  /camelcase/6.3.0:
+    resolution: {integrity: sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==}
+    engines: {node: '>=10'}
+    dev: false
 
   /case-anything/2.1.10:
     resolution: {integrity: sha512-JczJwVrCP0jPKh05McyVsuOg6AYosrB9XWZKbQzXeDAm2ClE/PJE/BcrrQrVyGYH7Jg8V/LDupmyL4kFlVsVFQ==}
@@ -3013,6 +3235,12 @@ packages:
       thread-stream: 2.3.0
     dev: false
 
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: false
+
   /process-warning/2.1.0:
     resolution: {integrity: sha512-9C20RLxrZU/rFnxWncDkuF6O999NdIf3E1ws4B0ZeY3sRVPzWBMsYDE2lxjxhiXxg464cQTgKUGm8/i6y2YGXg==}
     dev: false
@@ -3053,7 +3281,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 16.18.12
+      '@types/node': 18.14.2
       long: 4.0.0
     dev: false
 
@@ -3276,6 +3504,12 @@ packages:
     engines: {node: '>= 10.x'}
     dev: false
 
+  /spok/1.4.3:
+    resolution: {integrity: sha512-5wFGctwrk638aDs+44u99kohxFNByUq2wo0uShQ9yqxSmsxqx7zKbMo1Busy4s7stZQXU+PhJ/BlVf2XWFEGIw==}
+    dependencies:
+      ansicolors: 0.3.2
+    dev: false
+
   /standard-as-callback/2.1.0:
     resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
     dev: false
@@ -3351,6 +3585,10 @@ packages:
 
   /text-encoding-utf-8/1.0.2:
     resolution: {integrity: sha512-8bw4MY9WjdsD2aMtO0OzOCY3pXGYNx2d2FfHRVUKkiCPDWjKuOlhLVASS+pD7VkLTVjW268LYJHwsnPFlBpbAg==}
+
+  /text-table/0.2.0:
+    resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
+    dev: false
 
   /thread-stream/2.3.0:
     resolution: {integrity: sha512-kaDqm1DET9pp3NXwR8382WHbnpXnRkN9xGN9dQt3B2+dmXiW8X1SOwmFOxAErEQ47ObhZ96J6yhZNXuyCOL7KA==}
