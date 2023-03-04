@@ -1,4 +1,6 @@
-# Jupiter-quote-api
+# Jupiter Quote API
+
+This is the same code that we use to host our Jupiter API on [fly.io](https://fly.io).
 
 ## Prerequisite
 - [redis](https://redis.io/docs/getting-started/installation/install-redis-on-mac-os/)
