@@ -23,3 +23,5 @@ ENV PORT=8080
 # https://redis.io/docs/manual/eviction/
 # volatile-lru: Removes least recently used keys with the expire field set to true.
 CMD redis-server --maxmemory 2048mb --maxmemory-policy volatile-lru --daemonize yes && pnpm serve
+
+EXPOSE 8080
