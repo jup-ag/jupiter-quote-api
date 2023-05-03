@@ -4,6 +4,7 @@ This is the same code that we use to host our Jupiter API on [fly.io](https://fl
 
 ## Prerequisite
 - [redis](https://redis.io/docs/getting-started/installation/install-redis-on-mac-os/)
+- [pm2](https://pm2.io/docs/runtime/guide/installation/)
 
 ## How to run
 1. `pnpm install`
