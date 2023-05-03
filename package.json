@@ -15,7 +15,7 @@
     "@fastify/rate-limit": "7.4.0",
     "@fastify/sensible": "~5.1.1",
     "@fastify/swagger": "7.6.1",
-    "@jup-ag/core": "4.0.0-beta.16",
+    "@jup-ag/core": "4.0.0-beta.17",
     "@mongodb-js/zstd": "^1.1.0",
     "@saberhq/solana-contrib": "1.13.6",
     "@saberhq/token-utils": "1.13.6",
