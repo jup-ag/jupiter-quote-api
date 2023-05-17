@@ -932,7 +932,7 @@ async function start() {
   server.listen(
     {
       port: Number(process.env.PORT || 8080),
-      host: "0.0.0.0",
+      host: "::",
     },
     (err, address) => {
       if (err) {

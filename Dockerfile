@@ -1,6 +1,6 @@
 FROM node:lts-bullseye
 
-# WORKDIR /workspace 
+# WORKDIR /workspace
 # Create and change to the app directory.
 WORKDIR /usr/app
 
@@ -11,7 +11,6 @@ RUN apt-get update
 RUN apt-get install -y g++ make python3-pip redis
 
 COPY package.json .
-
 
 RUN pnpm install
 
