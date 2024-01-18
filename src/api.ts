@@ -29,6 +29,8 @@ import { MAX_SLIPPAGE_BPS, MIN_SLIPPAGE_BPS } from "./utils/slippage";
 import { MAX_SAFE_U64 } from "./utils/u64";
 import sensible from "@fastify/sensible";
 import { ammsToExclude } from "./ammsToExclude";
+import priceRouteRouter, { PriceRouteQueryString } from "./price";
+import TokenInfoResolver from "./price/utils/getTokenInfoFromSymbol";
 
 const IS_DEV = process.env.IS_DEV;
 
@@ -281,7 +283,11 @@ async function start() {
   const store = {
     contextSlot: 0,
     accountInfos: new Map<string, AccountInfo<Buffer>>(),
+    tokenInfoResolver: new TokenInfoResolver(),
   };
+
+  // Initialize TokenInfoResolver
+  await store.tokenInfoResolver.init();
 
   const worker = new Worker(__filename);
 
@@ -859,6 +865,65 @@ async function start() {
         },
         required: ["ids"],
       };
+
+      instance.get<PriceRouteQueryString>(
+        "/price",
+        {
+          schema: {
+            description:
+              "Get simple price for a given input mint, output mint and amount",
+            tags: [],
+            summary: "Return simple price",
+            querystring: GetPriceQueryString,
+            response: {
+              200: {
+                description:
+                  "Default response with ids which return an object. Refer to Price hash model below. If the id is invalid, it will not return in the hash.",
+                type: "object",
+                properties: {
+                  data: {
+                    $ref: "PriceHash#",
+                  },
+                  timeTaken: { type: "number" },
+                  contextSlot: { type: "number" },
+                },
+              },
+              400: {
+                description:
+                  "Amount lesser or equals to 0. No routes found for trading pairs",
+                type: "object",
+              },
+              404: {
+                description:
+                  "Symbol or address not found for either input or vsToken",
+                type: "object",
+              },
+              409: {
+                description:
+                  "Duplicate symbol found for input or vsToken. The server will respond an error structure which contains the conflict addresses. User will have to use address mode instead.",
+                type: "object",
+                properties: {
+                  data: {
+                    type: "object",
+                    properties: {
+                      error: {
+                        type: "string",
+                        description:
+                          "Duplicated symbol found for [symbol], use one of the address instead",
+                      },
+                      addresses: {
+                        type: "array",
+                        description: "List of addresses for the symbol",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        priceRouteRouter(store, jupiter)
+      );
 
       instance.get<{
         Querystring: { onlyDirectRoutes?: boolean };
