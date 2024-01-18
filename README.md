@@ -1,4 +1,8 @@
-# Jupiter Quote API
+---
+We no longer maintain this repo. For the latest API, check out [Jupiter Swap API](https://github.com/jup-ag/jupiter-swap-api).
+---
+
+# [Deprecated] Jupiter Quote API
 
 This is the same code that we use to host our Jupiter API on [fly.io](https://fly.io).
 
